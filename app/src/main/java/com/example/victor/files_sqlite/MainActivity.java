@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.amitshekhar.DebugDB;
 import com.example.victor.files_sqlite.Controlador.CtlUsuario;
 import com.example.victor.files_sqlite.Modelo.Usuario;
 
@@ -89,5 +90,9 @@ public class MainActivity extends AppCompatActivity {
     public void listar(View view) {
         Intent intent = new Intent(MainActivity.this,ListadoUsuariosActivity.class);
         startActivity(intent);
+    }
+
+    public void verIp(View view) {
+        Toast.makeText(this, ""+ DebugDB.getAddressLog(), Toast.LENGTH_LONG).show();
     }
 }
