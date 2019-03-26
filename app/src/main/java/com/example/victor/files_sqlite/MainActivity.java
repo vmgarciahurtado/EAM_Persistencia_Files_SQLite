@@ -54,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void eliminar(View view) {
+        String cedula = campoCedula.getText().toString();
+        if (controlador.eliminarUsuario(cedula)){
+            Toast.makeText(this, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "No se encuentra el usuario", Toast.LENGTH_SHORT).show();
+        }
+        limpiar();
+    }
+
     private void limpiar() {
         campoCedula.setText(null);
         campoNombre.setText(null);
