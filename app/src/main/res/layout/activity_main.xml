@@ -3,85 +3,82 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.victor.files_sqlite.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <EditText
+            android:id="@+id/campoCedula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ingrese cedula"
-            android:inputType="number"
-            android:id="@+id/campoCedula"
-            />
+            android:inputType="number" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ingrese nombre"
             android:id="@+id/campoNombre"
-            />
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingrese apellido"
-            android:id="@+id/campoApellido"
-            />
+            android:hint="Ingrese nombre" />
 
         <EditText
+            android:id="@+id/campoApellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese apellido" />
+
+        <EditText
+            android:id="@+id/campoEdad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ingrese edad"
-            android:inputType="number"
-            android:id="@+id/campoEdad"
-            />
+            android:inputType="number" />
 
         <Button
+            android:id="@+id/btnGuardar"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:onClick="guardar"
-            android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:id="@+id/btnGuardar"/>
+            android:text="Guardar" />
 
         <Button
+            android:id="@+id/btnBuscar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="busacr"
             android:onClick="consulta"
-            android:id="@+id/btnBuscar"/>
+            android:text="busacr" />
 
         <Button
+            android:id="@+id/btnModificar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="modificar"
             android:onClick="modificar"
-            android:id="@+id/btnModificar"/>
+            android:text="modificar" />
 
         <Button
+            android:id="@+id/btnEliminar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="eliminar"
-            android:text="eliminar"
-            android:id="@+id/btnEliminar"/>
+            android:text="eliminar" />
 
         <Button
+            android:id="@+id/btnListar"
+            android:onClick="listar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="listar"
-            android:id="@+id/btnListar"/>
+            android:text="listar" />
 
         <Button
+            android:id="@+id/btnUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ver url para bd"
-            android:id="@+id/btnUrl"/>
+            android:text="ver url para bd" />
 
     </LinearLayout>
 

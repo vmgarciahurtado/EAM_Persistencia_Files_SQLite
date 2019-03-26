@@ -1,5 +1,6 @@
 package com.example.victor.files_sqlite;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,7 @@ import com.example.victor.files_sqlite.Modelo.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText campoCedula,campoNombre,campoApellido,campoEdad;
+    EditText campoCedula, campoNombre, campoApellido, campoEdad;
     CtlUsuario controlador;
 
     @Override
@@ -31,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
         String apellido = campoApellido.getText().toString();
         int edad = Integer.parseInt(campoEdad.getText().toString());
 
-        if (controlador.guardarUsuario(cedula,nombre,apellido,edad)){
+        if (controlador.guardarUsuario(cedula, nombre, apellido, edad)) {
             Toast.makeText(this, "Almacenado correcto", Toast.LENGTH_SHORT).show();
             limpiar();
-        }else {
+        } else {
             Toast.makeText(this, "Almacenado incorrecto", Toast.LENGTH_SHORT).show();
         }
     }
@@ -44,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
         String cedula = campoCedula.getText().toString();
         Usuario usuario = controlador.buscarUsuario(cedula);
 
-        if (usuario != null){
+        if (usuario != null) {
             campoNombre.setText(usuario.getNombre());
             campoApellido.setText(usuario.getApellido());
-            campoEdad.setText(usuario.getEdad()+"");
-        }else {
+            campoEdad.setText(usuario.getEdad() + "");
+        } else {
             Toast.makeText(this, "No se encuentra el usuario", Toast.LENGTH_SHORT).show();
         }
     }
@@ -56,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void eliminar(View view) {
         String cedula = campoCedula.getText().toString();
-        if (controlador.eliminarUsuario(cedula)){
+        if (controlador.eliminarUsuario(cedula)) {
             Toast.makeText(this, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             Toast.makeText(this, "No se encuentra el usuario", Toast.LENGTH_SHORT).show();
         }
         limpiar();
@@ -77,11 +78,16 @@ public class MainActivity extends AppCompatActivity {
         String apellido = campoApellido.getText().toString();
         int edad = Integer.parseInt(campoEdad.getText().toString());
 
-        if (controlador.modificarUsuario(cedula,nombre,apellido,edad)){
+        if (controlador.modificarUsuario(cedula, nombre, apellido, edad)) {
             Toast.makeText(this, "Almacenado correcto", Toast.LENGTH_SHORT).show();
             limpiar();
-        }else {
+        } else {
             Toast.makeText(this, "Almacenado incorrecto", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void listar(View view) {
+        Intent intent = new Intent(MainActivity.this,ListadoUsuariosActivity.class);
+        startActivity(intent);
     }
 }
