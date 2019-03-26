@@ -70,4 +70,18 @@ public class MainActivity extends AppCompatActivity {
         campoApellido.setText(null);
         campoEdad.setText(null);
     }
+
+    public void modificar(View view) {
+        String cedula = campoCedula.getText().toString();
+        String nombre = campoNombre.getText().toString();
+        String apellido = campoApellido.getText().toString();
+        int edad = Integer.parseInt(campoEdad.getText().toString());
+
+        if (controlador.modificarUsuario(cedula,nombre,apellido,edad)){
+            Toast.makeText(this, "Almacenado correcto", Toast.LENGTH_SHORT).show();
+            limpiar();
+        }else {
+            Toast.makeText(this, "Almacenado incorrecto", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
