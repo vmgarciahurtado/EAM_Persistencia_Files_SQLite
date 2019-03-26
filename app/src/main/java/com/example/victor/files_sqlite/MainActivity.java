@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.victor.files_sqlite.Controlador.CtlUsuario;
+import com.example.victor.files_sqlite.Modelo.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +38,21 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Almacenado incorrecto", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+    public void consulta(View view) {
+        String cedula = campoCedula.getText().toString();
+        Usuario usuario = controlador.buscarUsuario(cedula);
+
+        if (usuario != null){
+            campoNombre.setText(usuario.getNombre());
+            campoApellido.setText(usuario.getApellido());
+            campoEdad.setText(usuario.getEdad()+"");
+        }else {
+            Toast.makeText(this, "No se encuentra el usuario", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     private void limpiar() {
         campoCedula.setText(null);
