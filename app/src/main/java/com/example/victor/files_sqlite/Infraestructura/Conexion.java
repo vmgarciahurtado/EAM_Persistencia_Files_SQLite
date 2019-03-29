@@ -21,8 +21,8 @@ public class Conexion extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
-    public Conexion(Context context){
-        super(context,database,factory,version);
+    public Conexion(Context context) {
+        super(context, database, factory, version);
     }
 
     @Override
@@ -40,61 +40,61 @@ public class Conexion extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void cerrarConexion(){
+    public void cerrarConexion() {
         db.close();
     }
 
-    public boolean ejecutarInsert(String tabla,ContentValues registro){
+    public boolean ejecutarInsert(String tabla, ContentValues registro) {
         try {
             db = this.getWritableDatabase();
-            int res = (int) db.insert(tabla,null,registro);
+            int res = (int) db.insert(tabla, null, registro);
             cerrarConexion();
-            if (res != -1){
-                return  true;
-            }else {
-                return false;
-            }
-
-        }catch (Exception e){
-            return false;
-        }
-
-    }
-
-    public boolean ejecutarDelete(String tabla,String condicion){
-        db = this.getWritableDatabase();
-        int cant = db.delete(tabla,condicion,null);
-        cerrarConexion();
-        if (cant >= 1){
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public boolean ejecutarUpdate(String tabla,String condicion,ContentValues registro){
-        try {
-            db = this.getWritableDatabase();
-            int cant = db.update(tabla,registro,condicion,null);
-            cerrarConexion();
-
-            if (cant == 1){
+            if (res != -1) {
                 return true;
-            }else {
+            } else {
                 return false;
             }
-        }catch (Exception e){
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    public boolean ejecutarDelete(String tabla, String condicion) {
+        db = this.getWritableDatabase();
+        int cant = db.delete(tabla, condicion, null);
+        cerrarConexion();
+        if (cant >= 1) {
+            return true;
+        } else {
             return false;
         }
     }
 
-    public Cursor ejecutarSearch(String consulta){
+    public boolean ejecutarUpdate(String tabla, String condicion, ContentValues registro) {
+        try {
+            db = this.getWritableDatabase();
+            int cant = db.update(tabla, registro, condicion, null);
+            cerrarConexion();
+
+            if (cant == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Cursor ejecutarSearch(String consulta) {
         try {
             db = this.getWritableDatabase();
 
-            Cursor fila = db.rawQuery(consulta,null);
+            Cursor fila = db.rawQuery(consulta, null);
             return fila;
-        }catch (Exception e){
+        } catch (Exception e) {
             cerrarConexion();
             return null;
         }
