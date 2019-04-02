@@ -27,17 +27,18 @@ public class UsuarioDAO {
         registro.put("nombre",usuario.getNombre());
         registro.put("apellido",usuario.getApellido());
         registro.put("edad",usuario.getEdad());
+        registro.put("genero",usuario.getGenero());
         return conexion.ejecutarInsert("usuario",registro);
     }
 
     public Usuario buscar(String cedula){
         Usuario usuario = null;
-        String consulta = "select nombre,apellido,edad " +"from usuario where " + "cedula="+cedula+"";
+        String consulta = "select nombre,apellido,edad,genero " + "from usuario where " + "cedula="+cedula+"";
         Cursor temp = conexion.ejecutarSearch(consulta);
 
         if (temp.getCount() > 0){
             temp.moveToFirst();
-            usuario = new Usuario(cedula,temp.getString(0),temp.getString(1),Integer.parseInt(temp.getString(2)));
+            usuario = new Usuario(cedula,temp.getString(0),temp.getString(1),Integer.parseInt(temp.getString(2)),Integer.parseInt(temp.getString(3)));
         }
         conexion.cerrarConexion();
         return usuario;
@@ -61,12 +62,12 @@ public class UsuarioDAO {
 
     public List<Usuario> listar(){
         List<Usuario> listaUsuarios = new ArrayList<>();
-        String consulta = "select cedula,nombre,apellido,edad from usuario";
+        String consulta = "select cedula,nombre,apellido,edad,genero from usuario";
         Cursor temp = conexion.ejecutarSearch(consulta);
 
         if (temp.moveToFirst()){
             do {
-                Usuario usuario = new Usuario(temp.getString(0),temp.getString(1),temp.getString(2),Integer.parseInt(temp.getString(3)));
+                Usuario usuario = new Usuario(temp.getString(0),temp.getString(1),temp.getString(2),Integer.parseInt(temp.getString(3)),Integer.parseInt(temp.getString(4)));
                 listaUsuarios.add(usuario);
             }while (temp.moveToNext());
         }

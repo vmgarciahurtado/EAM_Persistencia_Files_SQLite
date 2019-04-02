@@ -19,8 +19,8 @@ public class CtlUsuario {
         dao = new UsuarioDAO(activity);
     }
 
-    public boolean guardarUsuario(String cedula,String nombre,String apellido,int edad){
-        Usuario usuario = new Usuario(cedula,nombre,apellido,edad);
+    public boolean guardarUsuario(String cedula,String nombre,String apellido,int edad,int genero){
+        Usuario usuario = new Usuario(cedula,nombre,apellido,edad,genero);
         return dao.guardar(usuario);
     }
 
@@ -30,12 +30,12 @@ public class CtlUsuario {
     }
 
     public boolean eliminarUsuario(String cedula){
-        Usuario usuario = new Usuario(cedula,"","",0);
+        Usuario usuario = new Usuario(cedula,"","",0,0);
         return dao.eliminar(usuario);
     }
 
-    public boolean modificarUsuario(String cedula,String nombre,String apellido,int edad) {
-        Usuario usuario = new Usuario(cedula, nombre, apellido, edad);
+    public boolean modificarUsuario(String cedula,String nombre,String apellido,int edad,int genero) {
+        Usuario usuario = new Usuario(cedula, nombre, apellido, edad,genero);
         return dao.modificar(usuario);
     }
 

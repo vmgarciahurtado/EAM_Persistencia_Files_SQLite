@@ -38,6 +38,12 @@
             android:hint="Ingrese edad"
             android:inputType="number" />
 
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/spnGenero"
+            android:layout_height="wrap_content">
+        </Spinner>
+
         <Button
             android:id="@+id/btnGuardar"
             android:layout_width="match_parent"

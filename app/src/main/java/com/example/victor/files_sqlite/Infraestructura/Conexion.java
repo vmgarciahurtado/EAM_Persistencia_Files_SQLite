@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Conexion extends SQLiteOpenHelper {
 
-    private static final String database = "administracion.db";
+    private static final String database = "admin.db";
     private static final SQLiteDatabase.CursorFactory factory = null;
     private static final int version = 1;
     SQLiteDatabase db;
@@ -26,17 +26,37 @@ public class Conexion extends SQLiteOpenHelper {
     }
 
     @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()){
+            db.execSQL("PRAGMA foreign_keys=ON;");
+        }
+    }
+
+    @Override
     public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("create table genero(" +
+                "id integer primary key, " +
+                "nombre text "+")");
+
+        db.execSQL("insert into genero values(0,'Masculino')");
+        db.execSQL("insert into genero values(1,'Femenino')");
+
         db.execSQL("create table usuario(" +
                 "cedula text primary key, " +
                 "nombre text, " +
                 "apellido text, " +
-                "edad integer" + ")");
+                "edad integer," +
+                "genero integer REFERENCES genero ON DELETE CASCADE " + ")");
+
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists usuario");
+        db.execSQL("drop table if exists genero");
         onCreate(db);
     }
 

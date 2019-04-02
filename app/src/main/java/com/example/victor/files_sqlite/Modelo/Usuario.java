@@ -10,15 +10,27 @@ public class Usuario {
 
     }
 
-    public Usuario(String cedula, String nombre, String apellido, int edad) {
+
+
+    public Usuario(String cedula, String nombre, String apellido, int edad, int genero) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
+        this.genero = genero;
     }
 
     String cedula,nombre,apellido;
-    int edad;
+    int edad,genero;
+
+
+    public int getGenero() {
+        return genero;
+    }
+
+    public void setGenero(int genero) {
+        this.genero = genero;
+    }
 
     public String getCedula() {
         return cedula;
